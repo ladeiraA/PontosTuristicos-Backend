@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using PontosTuristicos.Api.Data;
+using PontosTuristicos.Api.Repositories;
+using PontosTuristicos.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,10 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=PontosTuristicos.db";
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString));
+
+builder.Services.AddScoped<IPontoTuristicoRepository, PontoTuristicoRepository>();
+builder.Services.AddScoped<PontoTuristicoService>();
+
 
 var app = builder.Build();
 
