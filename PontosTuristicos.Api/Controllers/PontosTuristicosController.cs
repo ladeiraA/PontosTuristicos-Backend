@@ -15,7 +15,7 @@ public class PontosTuristicosController : ControllerBase
         _service = service;
     }
 
-    // GET: api/pontosturisticos
+    // GET
     [HttpGet]
     public async Task<IActionResult> Get(
         [FromQuery] string? termo,
@@ -26,7 +26,7 @@ public class PontosTuristicosController : ControllerBase
         return Ok(pontos);
     }
 
-    // GET: api/pontosturisticos/5
+    // GET
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -38,7 +38,7 @@ public class PontosTuristicosController : ControllerBase
         return Ok(ponto);
     }
 
-    // POST: api/pontosturisticos
+    // POST
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] PontoTuristico ponto)
     {
@@ -52,4 +52,32 @@ public class PontosTuristicosController : ControllerBase
             new { id = ponto.Id },
             ponto);
     }
+
+    // PUT
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, PontoTuristico ponto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var atualizado = await _service.AtualizarAsync(id, ponto);
+
+        if (!atualizado)
+            return NotFound();
+
+        return NoContent();
+    }
+
+    // DELETE
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var removido = await _service.RemoverAsync(id);
+
+        if (!removido)
+            return NotFound();
+
+        return NoContent();
+    }
+
 }

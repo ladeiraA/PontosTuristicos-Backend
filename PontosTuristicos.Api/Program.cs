@@ -1,7 +1,4 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using PontosTuristicos.Api.Data;
 using PontosTuristicos.Api.Repositories;
 using PontosTuristicos.Api.Services;

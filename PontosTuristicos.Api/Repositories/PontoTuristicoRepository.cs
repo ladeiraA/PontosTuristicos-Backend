@@ -23,7 +23,7 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
             query = query.Where(p =>
                 p.Nome.Contains(termo) ||
                 p.Descricao.Contains(termo) ||
-                p.Referencia.Contains(termo));
+                p.Referencia.Contains(termo)); 
         }
 
         return await query
@@ -43,4 +43,22 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
         _context.PontosTuristicos.Add(ponto);
         await _context.SaveChangesAsync();
     }
+
+    public async Task AtualizarAsync(PontoTuristico ponto)
+    {
+        _context.PontosTuristicos.Update(ponto);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> RemoverAsync(int id)
+    {
+        var ponto = await _context.PontosTuristicos.FindAsync(id);
+        if (ponto == null)
+            return false;
+
+        _context.PontosTuristicos.Remove(ponto);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
 }

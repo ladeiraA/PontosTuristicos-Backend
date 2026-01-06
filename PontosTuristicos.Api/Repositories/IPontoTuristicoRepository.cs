@@ -12,4 +12,6 @@ public interface IPontoTuristicoRepository
     Task<PontoTuristico?> ObterPorIdAsync(int id);
 
     Task AdicionarAsync(PontoTuristico ponto);
+    Task AtualizarAsync(PontoTuristico ponto);
+    Task<bool> RemoverAsync(int id);
 }
