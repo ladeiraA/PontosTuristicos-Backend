@@ -1,10 +1,10 @@
-# Pontos Turísticos API
+ï»¿# Pontos TurÃ­sticos API
 
-API REST desenvolvida em ASP.NET Core para gerenciamento de pontos turísticos, permitindo cadastro, consulta, pesquisa, edição e exclusão de registros.
+API REST desenvolvida em ASP.NET Core para gerenciamento de pontos turÃ­sticos, permitindo cadastro, consulta, pesquisa, ediÃ§Ã£o e exclusÃ£o de registros.
 
-O projeto foi desenvolvido com foco em simplicidade, organização e boas práticas, adequado para avaliação de desenvolvedor júnior.
+O projeto foi desenvolvido com foco em simplicidade, organizaÃ§Ã£o e boas prÃ¡ticas, adequado para avaliaÃ§Ã£o de desenvolvedor jÃºnior.
 
-## ?? Tecnologias Utilizadas
+## ğŸš€ Tecnologias Utilizadas
 
 - **.NET 8**
 - **ASP.NET Core Web API**
@@ -12,62 +12,62 @@ O projeto foi desenvolvido com foco em simplicidade, organização e boas práticas
 - **SQLite** (banco de dados)
 - **Swagger/OpenAPI**
 
-## ?? Funcionalidades
+## ğŸ“‹ Funcionalidades
 
-- ? Criar ponto turístico
-- ? Listar pontos turísticos com paginação
-- ? Pesquisar pontos turísticos por:
+- âœ… Criar ponto turÃ­stico
+- âœ… Listar pontos turÃ­sticos com paginaÃ§Ã£o
+- âœ… Pesquisar pontos turÃ­sticos por:
   - Nome
   - Cidade
   - Estado
-  - Referência
-  - *(aceitando digitar apenas o início da palavra, sem diferenciação de maiúsculas/minúsculas)*
-- ? Atualizar ponto turístico
-- ? Excluir ponto turístico
-- ? Listagem ordenada pelo cadastro mais recente
+  - ReferÃªncia
+  - *(aceitando digitar apenas o inÃ­cio da palavra, sem diferenciaÃ§Ã£o de maiÃºsculas/minÃºsculas)*
+- âœ… Atualizar ponto turÃ­stico
+- âœ… Excluir ponto turÃ­stico
+- âœ… Listagem ordenada pelo cadastro mais recente
 
-## ?? Endpoints
+## ğŸ“š Endpoints
 
-### Listar e pesquisar pontos turísticos
+### Listar e pesquisar pontos turÃ­sticos
 ```
 GET /api/PontosTuristicos?termo={termo}&pagina={pagina}&tamanhoPagina={tamanhoPagina}
 ```
-Lista e pesquisa pontos turísticos com paginação
+Lista e pesquisa pontos turÃ­sticos com paginaÃ§Ã£o
 
-### Buscar ponto turístico por ID
+### Buscar ponto turÃ­stico por ID
 ```
 GET /api/PontosTuristicos/{id}
 ```
-Busca ponto turístico específico por ID
+Busca ponto turÃ­stico especÃ­fico por ID
 
-### Cadastrar novo ponto turístico
+### Cadastrar novo ponto turÃ­stico
 ```
 POST /api/PontosTuristicos
 ```
-Cadastra um novo ponto turístico
+Cadastra um novo ponto turÃ­stico
 
-### Atualizar ponto turístico
+### Atualizar ponto turÃ­stico
 ```
 PUT /api/PontosTuristicos/{id}
 ```
-Atualiza um ponto turístico existente
+Atualiza um ponto turÃ­stico existente
 
-### Excluir ponto turístico
+### Excluir ponto turÃ­stico
 ```
 DELETE /api/PontosTuristicos/{id}
 ```
-Exclui um ponto turístico
+Exclui um ponto turÃ­stico
 
-## ?? Pré-requisitos
+## ğŸ”§ PrÃ©-requisitos
 
 - **.NET SDK 8** instalado
 - **Visual Studio** ou **Visual Studio Code**
 
-*Nota: O SQLite é integrado ao projeto, não necessitando instalação separada de banco de dados.*
+*Nota: O SQLite Ã© integrado ao projeto, nÃ£o necessitando instalaÃ§Ã£o separada de banco de dados.*
 
-## ?? Configuração do Banco de Dados
+## âš™ï¸ ConfiguraÃ§Ã£o do Banco de Dados
 
-O projeto utiliza **SQLite** por padrão. A configuração está no `appsettings.json`:
+O projeto utiliza **SQLite** por padrÃ£o. A configuraÃ§Ã£o estÃ¡ no `appsettings.json`:
 
 ```json
 {
@@ -82,11 +82,11 @@ O projeto utiliza **SQLite** por padrão. A configuração está no `appsettings.jso
 dotnet ef database update
 ```
 
-## ?? Executando o Projeto
+## ğŸš€ Executando o Projeto
 
 Na pasta do projeto, execute:
 
-1. **Restaurar dependências:**
+1. **Restaurar dependÃªncias:**
 ```bash
 dotnet restore
 ```
@@ -96,9 +96,9 @@ dotnet restore
 dotnet run
 ```
 
-A aplicação será iniciada e a URL será exibida no terminal.
+A aplicaÃ§Ã£o serÃ¡ iniciada e a URL serÃ¡ exibida no terminal.
 
-## ?? Modelo de Dados
+## ğŸ¯ Modelo de Dados
 
 ### PontoTuristico
 ```json
@@ -106,23 +106,23 @@ A aplicação será iniciada e a URL será exibida no terminal.
   "id": 1,
   "nome": "Cristo Redentor",
   "descricao": "Uma das sete maravilhas do mundo moderno",
-  "referencia": "Estátua no topo do Corcovado",
+  "referencia": "EstÃ¡tua no topo do Corcovado",
   "cidade": "Rio de Janeiro",
   "estado": "RJ",
   "dataInclusao": "2024-01-15T10:30:00"
 }
 ```
 
-**Campos obrigatórios:** `nome`, `referencia`, `cidade`, `estado`
+**Campos obrigatÃ³rios:** `nome`, `referencia`, `cidade`, `estado`
 
-**Validações:**
-- `nome`: máximo 100 caracteres
-- `descricao`: máximo 100 caracteres (opcional)
+**ValidaÃ§Ãµes:**
+- `nome`: mÃ¡ximo 100 caracteres
+- `descricao`: mÃ¡ximo 100 caracteres (opcional)
 - `estado`: exatamente 2 caracteres (UF)
 
-## ?? Swagger
+## ğŸ“– Swagger
 
-Após iniciar a aplicação, o Swagger estará disponível em:
+ApÃ³s iniciar a aplicaÃ§Ã£o, o Swagger estarÃ¡ disponÃ­vel em:
 
 ```
 https://localhost:{PORTA}/swagger
@@ -130,45 +130,45 @@ https://localhost:{PORTA}/swagger
 
 *(Substitua {PORTA} pela porta exibida no terminal)*
 
-## ??? Arquitetura
+## ğŸ—ï¸ Arquitetura
 
 O projeto utiliza arquitetura em camadas:
 
-- **Controllers**: Gerenciam requisições HTTP
-- **Services**: Contêm regras de negócio  
+- **Controllers**: Gerenciam requisiÃ§Ãµes HTTP
+- **Services**: ContÃªm regras de negÃ³cio  
 - **Repositories**: Fazem acesso aos dados
-- **Models**: Definem entidades do domínio
+- **Models**: Definem entidades do domÃ­nio
 - **Data**: Configuram o contexto do Entity Framework
 
 ```
 PontosTuristicos.Api/
-??? Controllers/
-??? Services/
-??? Repositories/
-??? Models/
-??? Data/
-??? Program.cs
+â”œâ”€â”€ Controllers/
+â”œâ”€â”€ Services/
+â”œâ”€â”€ Repositories/
+â”œâ”€â”€ Models/
+â”œâ”€â”€ Data/
+â””â”€â”€ Program.cs
 ```
 
-## ?? Observações
+## ğŸ“ ObservaÃ§Ãµes
 
 - O projeto utiliza arquitetura em camadas (Controller, Service e Repository)
-- As regras de negócio ficam concentradas no Service
-- O frontend consome esta API através de requisições HTTP
-- Paginação implementada para melhor performance
+- As regras de negÃ³cio ficam concentradas no Service
+- O frontend consome esta API atravÃ©s de requisiÃ§Ãµes HTTP
+- PaginaÃ§Ã£o implementada para melhor performance
 - Pesquisa inteligente com busca parcial
 
-## ????? Autor
+## ğŸ‘¨â€ğŸ’» Autor
 
-Projeto desenvolvido para fins de avaliação técnica.
+Projeto desenvolvido para fins de avaliaÃ§Ã£o tÃ©cnica.
 
 ---
 
-## ?? Versionamento
+## ğŸ”„ Versionamento
 
-Depois de fazer alterações no arquivo:
+Depois de fazer alteraÃ§Ãµes no arquivo:
 
 ```bash
 git add README.md
-git commit -m "Organiza e melhora formatação do README"
+git commit -m "Organiza e melhora formataÃ§Ã£o do README"
 git push origin main
