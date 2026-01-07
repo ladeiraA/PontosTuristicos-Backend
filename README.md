@@ -21,7 +21,6 @@ O projeto foi desenvolvido com foco em simplicidade, organização e boas práti
   - Cidade
   - Estado
   - Referência
-  - *(aceitando digitar apenas o início da palavra, sem diferenciação de maiúsculas/minúsculas)*
 - ✅ Atualizar ponto turístico
 - ✅ Excluir ponto turístico
 - ✅ Listagem ordenada pelo cadastro mais recente
@@ -115,11 +114,6 @@ A aplicação será iniciada e a URL será exibida no terminal.
 
 **Campos obrigatórios:** `nome`, `referencia`, `cidade`, `estado`
 
-**Validações:**
-- `nome`: máximo 100 caracteres
-- `descricao`: máximo 100 caracteres (opcional)
-- `estado`: exatamente 2 caracteres (UF)
-
 ## 📖 Swagger
 
 Após iniciar a aplicação, o Swagger estará disponível em:
@@ -155,20 +149,5 @@ PontosTuristicos.Api/
 - O projeto utiliza arquitetura em camadas (Controller, Service e Repository)
 - As regras de negócio ficam concentradas no Service
 - O frontend consome esta API através de requisições HTTP
-- Paginação implementada para melhor performance
 - Pesquisa inteligente com busca parcial
 
-## 👨‍💻 Autor
-
-Projeto desenvolvido para fins de avaliação técnica.
-
----
-
-## 🔄 Versionamento
-
-Depois de fazer alterações no arquivo:
-
-```bash
-git add README.md
-git commit -m "Organiza e melhora formatação do README"
-git push origin main
