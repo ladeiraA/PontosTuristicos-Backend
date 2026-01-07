@@ -18,6 +18,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IPontoTuristicoRepository, PontoTuristicoRepository>();
 builder.Services.AddScoped<PontoTuristicoService>();
 
+// Configurar CORS 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -29,6 +39,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
