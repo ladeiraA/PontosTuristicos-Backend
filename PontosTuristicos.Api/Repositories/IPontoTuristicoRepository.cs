@@ -4,7 +4,7 @@ namespace PontosTuristicos.Api.Repositories;
 
 public interface IPontoTuristicoRepository
 {
-    Task<IEnumerable<PontoTuristico>> ListarAsync(
+    Task<PaginatedResult<PontoTuristico>> ListarAsync(
         string? termo,
         int pagina,
         int tamanhoPagina);

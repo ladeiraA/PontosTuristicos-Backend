@@ -9,21 +9,39 @@ namespace PontosTuristicos.Api.Controllers;
 public class PontosTuristicosController : ControllerBase
 {
     private readonly PontoTuristicoService _service;
+    private readonly ILogger<PontosTuristicosController> _logger;
 
-    public PontosTuristicosController(PontoTuristicoService service)
+    public PontosTuristicosController(PontoTuristicoService service, ILogger<PontosTuristicosController> logger)
     {
         _service = service;
+        _logger = logger;
     }
 
     // GET
     [HttpGet]
     public async Task<IActionResult> Get(
         [FromQuery] string? termo,
-        [FromQuery] int pagina = 1,
-        [FromQuery] int tamanhoPagina = 10)
+        [FromQuery] string? search, // Alias para termo
+        [FromQuery] int pagina = 0,
+        [FromQuery] int page = 0, // Alias para pagina
+        [FromQuery] int tamanhoPagina = 0,
+        [FromQuery] int pageSize = 0) // Alias para tamanhoPagina
     {
-        var pontos = await _service.ListarAsync(termo, pagina, tamanhoPagina);
-        return Ok(pontos);
+        // Usar os valores enviados pelo frontend (priorizar inglês se ambos enviados)
+        var paginaFinal = page > 0 ? page : (pagina > 0 ? pagina : 1);
+        var tamanhoFinal = pageSize > 0 ? pageSize : (tamanhoPagina > 0 ? tamanhoPagina : 5);
+        var termoFinal = !string.IsNullOrWhiteSpace(search) ? search : termo;
+
+        // Validações básicas
+        if (paginaFinal < 1) paginaFinal = 1;
+        if (tamanhoFinal < 1) tamanhoFinal = 5;
+        if (tamanhoFinal > 50) tamanhoFinal = 50; // Limite máximo
+
+        _logger.LogInformation("Listando pontos turísticos - Termo: {termo}, Página: {pagina}, Tamanho: {tamanho}", 
+            termoFinal, paginaFinal, tamanhoFinal);
+
+        var resultado = await _service.ListarAsync(termoFinal, paginaFinal, tamanhoFinal);
+        return Ok(resultado);
     }
 
     // GET

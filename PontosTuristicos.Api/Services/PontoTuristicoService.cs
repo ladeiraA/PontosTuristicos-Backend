@@ -12,7 +12,7 @@ namespace PontosTuristicos.Api.Services
             _repository = repository;
         }
 
-        public Task<IEnumerable<PontoTuristico>> ListarAsync(
+        public Task<PaginatedResult<PontoTuristico>> ListarAsync(
             string? termo, int pagina, int tamanhoPagina)
         {
             return _repository.ListarAsync(termo, pagina, tamanhoPagina);

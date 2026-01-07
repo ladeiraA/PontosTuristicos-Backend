@@ -13,7 +13,7 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<PontoTuristico>> ListarAsync(
+    public async Task<PaginatedResult<PontoTuristico>> ListarAsync(
         string? termo, int pagina, int tamanhoPagina)
     {
         var query = _context.PontosTuristicos.AsQueryable();
@@ -27,11 +27,23 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
                 p.Estado.ToLower().StartsWith(termoLower));
         }
 
-        return await query
+        // Contar total de registros (antes da paginação)
+        var totalRegistros = await query.CountAsync();
+
+        // Aplicar paginação e ordenação
+        var dados = await query
             .OrderByDescending(p => p.DataInclusao)
             .Skip((pagina - 1) * tamanhoPagina)
             .Take(tamanhoPagina)
             .ToListAsync();
+
+        return new PaginatedResult<PontoTuristico>
+        {
+            Items = dados,
+            TotalItems = totalRegistros,
+            CurrentPage = pagina,
+            PageSize = tamanhoPagina
+        };
     }
 
     public async Task<PontoTuristico?> ObterPorIdAsync(int id)
