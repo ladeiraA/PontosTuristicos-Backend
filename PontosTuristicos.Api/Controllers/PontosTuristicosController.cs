@@ -9,12 +9,10 @@ namespace PontosTuristicos.Api.Controllers;
 public class PontosTuristicosController : ControllerBase
 {
     private readonly PontoTuristicoService _service;
-    private readonly ILogger<PontosTuristicosController> _logger;
 
-    public PontosTuristicosController(PontoTuristicoService service, ILogger<PontosTuristicosController> logger)
+    public PontosTuristicosController(PontoTuristicoService service)
     {
         _service = service;
-        _logger = logger;
     }
 
     // GET
@@ -36,9 +34,6 @@ public class PontosTuristicosController : ControllerBase
         if (paginaFinal < 1) paginaFinal = 1;
         if (tamanhoFinal < 1) tamanhoFinal = 5;
         if (tamanhoFinal > 50) tamanhoFinal = 50; // Limite máximo
-
-        _logger.LogInformation("Listando pontos turísticos - Termo: {termo}, Página: {pagina}, Tamanho: {tamanho}", 
-            termoFinal, paginaFinal, tamanhoFinal);
 
         var resultado = await _service.ListarAsync(termoFinal, paginaFinal, tamanhoFinal);
         return Ok(resultado);
