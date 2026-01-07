@@ -20,11 +20,11 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
 
         if (!string.IsNullOrWhiteSpace(termo))
         {
+            var termoLower = termo.ToLower();
             query = query.Where(p =>
-                p.Nome.Contains(termo) ||
-                (p.Descricao != null && p.Descricao.Contains(termo)) ||
-                p.Cidade.Contains(termo) ||
-                p.Estado.Contains(termo));
+                p.Nome.ToLower().StartsWith(termoLower) ||
+                p.Cidade.ToLower().StartsWith(termoLower) ||
+                p.Estado.ToLower().StartsWith(termoLower));
         }
 
         return await query
@@ -61,5 +61,4 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
         await _context.SaveChangesAsync();
         return true;
     }
-
 }
