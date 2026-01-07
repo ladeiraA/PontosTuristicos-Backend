@@ -22,8 +22,9 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
         {
             query = query.Where(p =>
                 p.Nome.Contains(termo) ||
-                p.Descricao.Contains(termo) ||
-                p.Referencia.Contains(termo)); 
+                (p.Descricao != null && p.Descricao.Contains(termo)) ||
+                p.Cidade.Contains(termo) ||
+                p.Estado.Contains(termo));
         }
 
         return await query
