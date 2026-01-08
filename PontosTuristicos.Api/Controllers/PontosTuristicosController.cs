@@ -19,13 +19,13 @@ public class PontosTuristicosController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get(
         [FromQuery] string? termo,
-        [FromQuery] string? search, // Alias para termo
+        [FromQuery] string? search, 
         [FromQuery] int pagina = 0,
-        [FromQuery] int page = 0, // Alias para pagina
+        [FromQuery] int page = 0, 
         [FromQuery] int tamanhoPagina = 0,
-        [FromQuery] int pageSize = 0) // Alias para tamanhoPagina
+        [FromQuery] int pageSize = 0) 
     {
-        // Usar os valores enviados pelo frontend (priorizar inglês se ambos enviados)
+        // Usar os valores enviados pelo frontend
         var paginaFinal = page > 0 ? page : (pagina > 0 ? pagina : 1);
         var tamanhoFinal = pageSize > 0 ? pageSize : (tamanhoPagina > 0 ? tamanhoPagina : 5);
         var termoFinal = !string.IsNullOrWhiteSpace(search) ? search : termo;

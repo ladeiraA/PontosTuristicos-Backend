@@ -16,7 +16,6 @@ namespace PontosTuristicos.Api.Models
         [JsonPropertyName("totalPages")]
         public int TotalPages => TotalItems > 0 && PageSize > 0 ? (int)Math.Ceiling(TotalItems / (double)PageSize) : 0;
         
-        // Propriedades internas para cálculos (não serializadas no JSON)
         [JsonIgnore]
         public int PageSize { get; set; }
         

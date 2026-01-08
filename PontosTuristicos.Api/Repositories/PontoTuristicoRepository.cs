@@ -27,7 +27,7 @@ public class PontoTuristicoRepository : IPontoTuristicoRepository
                 p.Estado.ToLower().StartsWith(termoLower));
         }
 
-        // Contar total de registros (antes da paginação)
+        // Contar total de registros
         var totalRegistros = await query.CountAsync();
 
         // Aplicar paginação e ordenação
